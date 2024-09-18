@@ -1,0 +1,30 @@
+.hover-nav{
+  transition: all ease 0.3s;
+  &:hover{
+    color:#a98467 !important;
+  }
+}
+.navbar-badge-position{
+  top:-11px; 
+  right:-8px;
+}
+.cart-list {
+  position: relative;
+  .cart-list-content {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    width: 30vw;
+    display: none;
+    ul{
+      overflow-y: auto;
+      overflow-x: hidden;
+      max-height: 300px;
+    }
+  }
+  &:hover {
+    .cart-list-content{
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+.pay-header.active{
+  color: #6c584c !important;
+  font-size: 20px;
+  // text-decoration: underline;
+}
+
+.check-btn{
+  &:active{
+    color: white !important;
+  }
+}
