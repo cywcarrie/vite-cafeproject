@@ -1,7 +1,11 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">後臺管理</a>
+      <a class="navbar-brand" href="#"
+        ><h1 class="logo text-white fs-2 mb-0 fw-bolder me-3">
+          <i class="bi bi-house-heart pe-2"></i>Fun<span class="text-white">nie</span>
+        </h1></a
+      >
       <button
         class="navbar-toggler"
         type="button"
@@ -18,7 +22,7 @@
           <RouterLink to="/admin/products" class="nav-link">產品</RouterLink>
           <RouterLink to="/admin/orders" class="nav-link">訂單</RouterLink>
           <RouterLink to="/admin/coupons" class="nav-link">優惠券</RouterLink>
-          <button type="button" @click="logout" class="nav-link">登出</button>
+          <a href="#" class="nav-link" @click.prevent="logout">登出</a>
         </div>
       </div>
     </div>
