@@ -2,7 +2,7 @@
 
 ### Demo Website : [Link](https://cywcarrie.github.io/vite-cafeproject/#/)
 
-模擬全英文電商網站，使用者可以將商品加入購物車、新增或刪除商品和送出訂單，以及可以輸入關鍵字搜尋商品，並且可以瀏覽個別商品的詳細資訊。後台則提供新增或修改商品和優惠券的功能。
+In this simulation of a fully English e-commerce website, users can add products to their shopping cart, manage items by adding or removing them, and place orders. They can search for products using keywords and view detailed information about individual items. The backend allows administrators to add and modify products and coupons. 
 
 ## Technologies Used
 
