@@ -1,4 +1,4 @@
-# Funnie Cafe - Cafe 全英文電商網站
+# Funnie Cafe - 全英文電商網站
 
 ## 專案說明
 
