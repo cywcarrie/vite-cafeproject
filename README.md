@@ -18,18 +18,18 @@ Vue.js, Vite, Pinia, ESLint, Bootstrap 5, SCSS
 - Utilized Pinia for state management, facilitating efficient data operations and promoting seamless communication among components.
 - Employed Bootstrap 5 and SCSS to design a responsive interface that significantly improved user experience, based on user feedback and testing insights.
 
-## 網站功能
+## Website features
 
-- 前台 (全英文頁面) 
-   - 首頁
-   - 商品列表：商品分類、用關鍵字搜尋商品
-   - 商品詳情
-   - 購物車：新增、刪除、修改商品功能
-   - 結帳：建立及送出訂單
-- 後台
-   - 商品管理：新增、修改、刪除商品及上傳商品圖片功能
-   - 訂單管理：新增、修改、刪除商品功能
-   - 優惠券管理：新增、修改、刪除商品功能
+- Front-end 
+   - Home Page
+   - Products Page：Product classification and keyword search for efficient product discovery
+   - Product Page : Product details
+   - Shopping Cart： Add items to cart and remove items as needed
+   - Checkout Process：Create and submit order
+- Back-end
+   - Product management：Manage product functionalities by adding, removing, and modifying items
+   - Order management： Manage order functions by adding, removing, and modifying orders
+   - Coupon management：Manage coupon functions by adding, removing, and modifying coupons
 
 ## Project Setup
 
@@ -55,7 +55,7 @@ npm run build
 npm run deploy
 ```
 
-## 專案套件
+## Packages
 
 - vue - v3.4.29
 - vite - v5.3.1
@@ -71,7 +71,4 @@ npm run deploy
 - bootstrap - v5.3.3
 - bootstrap-icons - v1.11.3
 
-## 使用版本
 
-- Node.js - v18.16.1
-- npm - v9.5.1
