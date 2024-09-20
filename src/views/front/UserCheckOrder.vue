@@ -57,7 +57,7 @@
                 <tbody>
                   <tr v-for="item in order.products" :key="item.id">
                     <td class="text-center text-primary fw-bold">{{ item.product.title }}</td>
-                    <td class="text-center text-nowrap">{{ item.qty }}/{{ item.product.unit }}</td>
+                    <td class="text-center text-nowrap">{{ item.qty }}</td>
                     <td class="text-center text-nowrap">
                       {{ $filters.currency(item.final_total) }}
                     </td>
