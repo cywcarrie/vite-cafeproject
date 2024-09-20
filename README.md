@@ -1,4 +1,4 @@
-# Funnie Cafe - 全英文電商網站
+# Funnie Cafe - E-commerce website (English)
 
 ## 專案說明
 
@@ -6,14 +6,17 @@
 
 模擬全英文電商網站，使用者可以將商品加入購物車、新增或刪除商品和送出訂單，以及可以輸入關鍵字搜尋商品，並且可以瀏覽個別商品的詳細資訊。後台則提供新增或修改商品和優惠券的功能。
 
+## Technologies Used
 
-## 使用技術
+Vue.js, Vite, Pinia, ESLint, Bootstrap 5, SCSS
 
-- 使用 Vue.js 框架搭配 Vite 和 Pinia 建立專案
-- 引入 Vue Router 和 Vue Axios 等套件，以實現路由管理和 API 請求功能
-- 配置 ESLint 符合 Standard 規範，確保程式碼品質
-- 透過 Pinia 進行狀態管理，負責跨元件的數據操作與共享
-- 使用 Bootstrap 5 和 SCSS 打造響應式界面，提升使用者體驗
+## Key Contributions
+
+- Developed the application using Vue.js and Vite, optimizing build processes for improved performance and responsiveness.
+- Integrated Vue Router and Vue Axios, enhancing route management and streamlining API requests, which led to a more intuitive user navigation experience.
+- Configured ESLint to adhere to Standard specifications, ensuring robust code quality and maintainability throughout the project lifecycle.
+- Utilized Pinia for state management, facilitating efficient data operations and promoting seamless communication among components.
+- Employed Bootstrap 5 and SCSS to design a responsive interface that significantly improved user experience, based on user feedback and testing insights.
 
 ## 網站功能
 
