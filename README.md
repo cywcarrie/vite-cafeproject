@@ -1,7 +1,5 @@
 # Funnie Cafe - E-commerce website (English)
 
-## 專案說明
-
 ### Demo Website : [Link](https://cywcarrie.github.io/vite-cafeproject/#/)
 
 模擬全英文電商網站，使用者可以將商品加入購物車、新增或刪除商品和送出訂單，以及可以輸入關鍵字搜尋商品，並且可以瀏覽個別商品的詳細資訊。後台則提供新增或修改商品和優惠券的功能。
