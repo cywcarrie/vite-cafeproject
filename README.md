@@ -1,6 +1,6 @@
 # Funnie Cafe - E-commerce website (English)
 
-## Introduction  Read this in other language: [繁體中文](README.zh_TW.md)
+## Introduction / Read this in other language : [繁體中文](README.zh_TW.md)
 
 ### Demo Website : [Link](https://cywcarrie.github.io/vite-cafeproject/#/)
 
