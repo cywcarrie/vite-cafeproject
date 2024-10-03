@@ -175,7 +175,7 @@
                     :false-value="0"
                     id="is_enabled"
                   />
-                  <label class="form-check-label" for="is_enabled"> 是否啟用 </label>
+                  <label class="form-check-label" for="is_enabled"> 是否上架 </label>
                 </div>
               </div>
             </div>

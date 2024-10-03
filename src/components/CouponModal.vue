@@ -70,7 +70,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary rounded-0" data-bs-dismiss="modal">
-            Close
+            關閉
           </button>
           <button
             type="button"

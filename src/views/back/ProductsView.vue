@@ -12,7 +12,7 @@
         <th>產品名稱</th>
         <th width="120">原價</th>
         <th width="120">售價</th>
-        <th width="100">是否啟用</th>
+        <th width="100">是否上架</th>
         <th width="200">編輯</th>
       </tr>
     </thead>
@@ -27,8 +27,8 @@
           {{ $filters.currency(item.price) }}
         </td>
         <td>
-          <span class="text-success" v-if="item.is_enabled">啟用</span>
-          <span class="text-muted" v-else>未啟用</span>
+          <span class="text-success" v-if="item.is_enabled">上架</span>
+          <span class="text-muted" v-else>未上架</span>
         </td>
         <td>
           <div class="btn-group">
