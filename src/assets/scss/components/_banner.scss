@@ -4,6 +4,9 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  @media screen and (max-width: 767.98px) {
+    height: 35vh;
+  }
 }
 .banner1 {
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
@@ -15,10 +18,4 @@
 }
 .banner-title {
   top: 50%;
-}
-
-@media screen and (max-width: 767.98px) {
-  .banner {
-    height: 35vh;
-  }
 }
