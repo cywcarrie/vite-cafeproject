@@ -1,11 +1,23 @@
-.pay-header.active{
+.pay-header.active {
   color: #6c584c !important;
   font-size: 20px;
-  // text-decoration: underline;
 }
 
-.check-btn{
-  &:active{
+.check-btn {
+  &:active {
     color: white !important;
+  }
+}
+.normal-input {
+  &.error {
+    input {
+      border: 1px solid $danger;
+    }
+
+    .error-text {
+      opacity: 1;
+      margin-top: 0;
+      font-size: 0.875em;
+    }
   }
 }

@@ -34,7 +34,7 @@
       <div class="row justify-content-center align-items-center">
         <div class="col-md-10">
           <div
-            class="d-flex justify-content-center align-items-center"
+            class="d-flex justify-content-center align-items-center mt-5"
             v-if="order.is_paid === true"
           >
             <i class="bi bi-check-circle-fill fs-2 pe-2 text-success"></i>

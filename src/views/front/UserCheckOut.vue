@@ -70,22 +70,6 @@
           <h3 class="text-center fw-bold mb-4">Customer Details</h3>
           <FormVue v-slot="{ errors }" @submit="createOrder">
             <div class="mb-3">
-              <label for="email" class="form-label"
-                >Email<small class="ps-1 text-danger fw-bold">*</small></label
-              >
-              <FieldVue
-                id="email"
-                name="email"
-                type="email"
-                class="form-control rounded-0"
-                :class="{ 'is-invalid': errors['email'] }"
-                placeholder="Please enter your email"
-                rules="email|required"
-                v-model="form.user.email"
-              />
-              <ErrorMessage name="email" class="invalid-feedback" />
-            </div>
-            <div class="mb-3">
               <label for="name" class="form-label"
                 >Name<small class="ps-1 text-danger fw-bold">*</small></label
               >
@@ -100,6 +84,22 @@
                 v-model="form.user.name"
               />
               <ErrorMessage name="name" class="invalid-feedback" />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label"
+                >Email<small class="ps-1 text-danger fw-bold">*</small></label
+              >
+              <FieldVue
+                id="email"
+                name="email"
+                type="email"
+                class="form-control rounded-0"
+                :class="{ 'is-invalid': errors['email'] }"
+                placeholder="Please enter your email"
+                rules="email|required"
+                v-model="form.user.email"
+              />
+              <ErrorMessage name="email" class="invalid-feedback" />
             </div>
             <div class="mb-3">
               <label for="tel" class="form-label"
@@ -119,7 +119,7 @@
             </div>
             <div class="mb-3">
               <label for="address" class="form-label"
-                >Address<small class="ps-1 text-danger fw-bold">*</small></label
+                >Delivery Address<small class="ps-1 text-danger fw-bold">*</small></label
               >
               <FieldVue
                 id="address"
@@ -132,6 +132,101 @@
                 v-model="form.user.address"
               />
               <ErrorMessage name="address" class="invalid-feedback" />
+            </div>
+            <div class="mb-4">
+              <fieldset class="col-12 d-flex flex-column">
+                <legend class="form-label mb-0 fs-6 fs-md-5 w-auto mb-2">
+                  Payment Method<small class="ps-1 text-danger fw-bold">*</small>
+                </legend>
+                <div class="normal-input" :class="{ error: errors['Payment Method'] }">
+                  <div class="d-flex">
+                    <div class="form-check form-radio me-3">
+                      <FieldVue
+                        class="form-check-input"
+                        type="radio"
+                        name="Payment Method"
+                        rules="required"
+                        id="creditCard"
+                        value="creditCard"
+                        v-model="form.user.pay"
+                      >
+                      </FieldVue>
+                      <label class="form-check-label" for="creditCard">Credit Card</label>
+                    </div>
+                    <div class="form-check form-radio">
+                      <FieldVue
+                        class="form-check-input"
+                        type="radio"
+                        name="Payment Method"
+                        rules="required"
+                        id="cash"
+                        value="cash"
+                        v-model="form.user.pay"
+                      >
+                      </FieldVue>
+                      <label class="form-check-label" for="cash">Cash</label>
+                    </div>
+                  </div>
+                  <ErrorMessage
+                    name="Payment Method"
+                    class="error-text position-absolute text-danger"
+                  />
+                </div>
+              </fieldset>
+            </div>
+            <div class="mb-3" v-if="form.user.pay === 'creditCard'">
+              <label for="cardNum" class="form-label"
+                >Card Number<small class="ps-1 text-danger fw-bold">*</small></label
+              >
+              <div class="row">
+                <div class="col-12">
+                  <FieldVue
+                    id="cardNum"
+                    name="Credit Card Number"
+                    type="tel"
+                    class="form-control rounded-0"
+                    maxlength="19"
+                    :class="{ 'is-invalid': errors['Credit Card Number'] }"
+                    placeholder="**** **** **** ****"
+                    rules="required"
+                    v-model="cardNumber"
+                  />
+                  <ErrorMessage name="Credit Card Number" class="invalid-feedback" />
+                  <div class="my-3 col-12 col-md-6">
+                    <label for="period" class="form-label required"
+                      >Expiration Date<small class="ps-1 text-danger fw-bold">*</small></label
+                    >
+                    <FieldVue
+                      id="period"
+                      name="Expiration Date"
+                      type="tel"
+                      class="form-control rounded-0"
+                      placeholder="MM/YY"
+                      maxlength="5"
+                      v-model="expiryDate"
+                      :class="{ 'is-invalid': errors['Expiration Date'] }"
+                      rules="required"
+                    />
+                    <ErrorMessage name="Expiration Date" class="invalid-feedback" />
+                  </div>
+                  <div class="mb-3 col-12 col-md-6">
+                    <label for="checkCode" class="form-label required"
+                      >CVV<small class="ps-1 text-danger fw-bold">*</small></label
+                    >
+                    <FieldVue
+                      id="checkCode"
+                      name="CVV"
+                      type="text"
+                      class="form-control rounded-0"
+                      maxlength="3"
+                      :class="{ 'is-invalid': errors['CVV'] }"
+                      placeholder="CVV"
+                      rules="required|length:3|numeric:true"
+                    />
+                    <ErrorMessage name="CVV" class="invalid-feedback" />
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="mb-3">
               <label for="message" class="form-label">Comment</label>
@@ -182,11 +277,43 @@ export default {
           name: '',
           email: '',
           tel: '',
-          address: ''
+          address: '',
+          pay: ''
         },
         message: ''
       },
-      coupon_code: ''
+      coupon_code: '',
+      expiryDate: '',
+      cardNumber: ''
+    }
+  },
+  watch: {
+    cardNumber(newCardNumber, oldCardNumber) {
+      if (
+        newCardNumber.length < oldCardNumber.length &&
+        newCardNumber.charAt(newCardNumber.length - 1) === ' '
+      ) {
+        this.cardNumber = oldCardNumber.slice(0, -2)
+      }
+      if (
+        newCardNumber.length > oldCardNumber.length &&
+        (newCardNumber.length + 1) % 5 === 0 &&
+        this.cardNumber.length !== 0 &&
+        this.cardNumber.length < 19
+      ) {
+        this.cardNumber = newCardNumber + ' '
+      }
+    },
+    expiryDate(newExpiryDate, oldExpiryDate) {
+      if (newExpiryDate.length === 2 && newExpiryDate.length > oldExpiryDate.length) {
+        this.expiryDate += '/'
+      } else if (
+        newExpiryDate.length < oldExpiryDate.length &&
+        oldExpiryDate.charAt(2) === '/' &&
+        oldExpiryDate.length === 3
+      ) {
+        this.expiryDate = oldExpiryDate.slice(0, 1)
+      }
     }
   },
   methods: {

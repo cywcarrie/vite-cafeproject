@@ -1,12 +1,12 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import FrontLayoutView from '@/views/FrontLayout.vue'
 
-const routes =  [
+const routes = [
   {
     path: '/',
     name: 'FrontLayout',
     component: FrontLayoutView,
-    children:[
+    children: [
       {
         path: '/',
         name: 'home',
@@ -47,7 +47,6 @@ const routes =  [
       {
         path: 'products',
         component: () => import('@/views/back/ProductsView.vue')
-      
       },
       {
         path: 'orders',
@@ -56,17 +55,17 @@ const routes =  [
       {
         path: 'coupons',
         component: () => import('@/views/back/CouponsView.vue')
-      }        
+      }
     ]
-  },  
+  }
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
   linkActiveClass: 'active',
   routes,
-  scrollBehavior () {
-    return { top: 0, behavior: "smooth" };
+  scrollBehavior() {
+    return { top: 0, behavior: 'smooth' }
   }
 })
 
