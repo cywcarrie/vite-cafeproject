@@ -60,10 +60,7 @@ export default {
     font-size: 24px;
     color: #6c584c;
   }
-}
-
-@media screen and (max-width: 767.98px) {
-  .top {
+  @media screen and (max-width: 767.98px) {
     bottom: 15px;
     right: 15px;
     i {
