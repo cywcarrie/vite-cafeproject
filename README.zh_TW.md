@@ -1,6 +1,6 @@
 # Funnie Cafe - Cafe 購物電商網站 (全英文)
 
-## 專案介紹 - 其他版本語言 : [English](README.md)
+## 專案簡介 - 其他版本語言 : [English](README.md)
 
 ### 網頁 : [Link](https://cywcarrie.github.io/vite-cafeproject/#/)
 
