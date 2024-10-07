@@ -28,7 +28,7 @@ Vue.js, Vite, Pinia, ESLint, Bootstrap 5, SCSS
    - Checkout Process：Create and submit order
 - Back-end
    - Product management：Manage product functionalities by adding, removing, and modifying items
-   - Order management： View customer orders
+   - Order management： View order details
    - Coupon management：Manage coupon functions by adding, removing, and modifying coupons
 
 ## Project Setup
