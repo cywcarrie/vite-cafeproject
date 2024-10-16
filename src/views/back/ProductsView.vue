@@ -1,5 +1,5 @@
 <template>
-  <LoadingVue :active="isLoading" :loader="'bars'" :color="'#6c584c'" :width="70" :height="70" />
+  <VueLoading :active="isLoading" />
   <div class="text-end mt-3">
     <button class="btn btn-primary rounded-0" type="button" @click="openModal(true)">
       <i class="bi bi-plus-lg pe-1"></i>新增產品
@@ -57,10 +57,11 @@
 </template>
 
 <script>
+import VueLoading from '@/components/VueLoading.vue'
 import ProductModal from '@/components/ProductModal.vue'
 import Pagination from '@/components/PaginationComponent.vue'
 import DelModal from '@/components/DelModal.vue'
-import Swal from 'sweetalert2'
+import ShowNotification from '@/mixins/swal'
 
 const { VITE_APP_API, VITE_APP_PATH } = import.meta.env
 
@@ -75,6 +76,7 @@ export default {
     }
   },
   components: {
+    VueLoading,
     ProductModal,
     DelModal,
     Pagination
@@ -93,17 +95,7 @@ export default {
           }
         })
         .catch((error) => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: `${error.response.data.message}`,
-            timer: 1500,
-            toast: true,
-            color: '#14213d',
-            background: '#fef8e2',
-            showConfirmButton: false,
-            timerProgressBar: true
-          })
+          ShowNotification('error', `${error.response.data.message}`)
         })
     },
     openModal(isNew, item) {
@@ -132,44 +124,13 @@ export default {
           productComponent.hideModal()
           if (response.data.success) {
             this.getProducts()
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: '更新成功',
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('success', '更新成功')
           } else {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'error',
-              title: '更新失敗',
-              text: response.data.message.join('、'),
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('error', '更新失敗')
           }
         })
         .catch((error) => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: `${error.response.data.message}`,
-            timer: 1500,
-            toast: true,
-            color: '#14213d',
-            background: '#fef8e2',
-            showConfirmButton: false,
-            timerProgressBar: true
-          })
+          ShowNotification('error', `${error.response.data.message}`)
         })
     },
     // 開啟刪除 Modal
@@ -187,44 +148,13 @@ export default {
           delComponent.hideModal()
           if (response.data.success) {
             this.getProducts()
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: '刪除商品成功',
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('success', '刪除商品成功')
           } else {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'error',
-              title: '刪除商品失敗',
-              text: response.data.message.join('、'),
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('error', '刪除商品失敗')
           }
         })
         .catch((error) => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: `${error.response.data.message}`,
-            timer: 1500,
-            toast: true,
-            color: '#14213d',
-            background: '#fef8e2',
-            showConfirmButton: false,
-            timerProgressBar: true
-          })
+          ShowNotification('error', `${error.response.data.message}`)
         })
     }
   },

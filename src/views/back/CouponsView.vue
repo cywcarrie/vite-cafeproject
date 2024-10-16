@@ -1,6 +1,6 @@
 <template>
   <div>
-    <LoadingVue :active="isLoading" :loader="'bars'" :color="'#6c584c'" :width="70" :height="70" />
+    <VueLoading :active="isLoading" />
     <div class="text-end mt-4">
       <button class="btn btn-primary rounded-0" type="button" @click="openCouponModal(true)">
         <i class="bi bi-plus-lg pe-1"></i>新增優惠券
@@ -52,14 +52,15 @@
 </template>
 
 <script>
+import VueLoading from '@/components/VueLoading.vue'
 import CouponModal from '@/components/CouponModal.vue'
 import DelModal from '@/components/DelModal.vue'
-import Swal from 'sweetalert2'
+import ShowNotification from '@/mixins/swal'
 
 const { VITE_APP_API, VITE_APP_PATH } = import.meta.env
 
 export default {
-  components: { CouponModal, DelModal },
+  components: { VueLoading, CouponModal, DelModal },
   props: {
     config: Object
   },
@@ -106,31 +107,11 @@ export default {
         const url = `${VITE_APP_API}api/${VITE_APP_PATH}/admin/coupon`
         this.$http.post(url, { data: tempCoupon }).then((response) => {
           if (response.data.success) {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: '新增優惠劵成功',
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('success', '新增優惠劵成功')
             this.getCoupons()
             this.$refs.couponModal.hideModal()
           } else {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'error',
-              title: '新增優惠劵失敗',
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('error', '新增優惠劵失敗')
           }
         })
       } else {
@@ -139,45 +120,15 @@ export default {
           .put(url, { data: this.tempCoupon })
           .then((response) => {
             if (response.data.success) {
-              Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: '更新優惠劵成功',
-                timer: 1500,
-                toast: true,
-                color: '#14213d',
-                background: '#fef8e2',
-                showConfirmButton: false,
-                timerProgressBar: true
-              })
+              ShowNotification('success', '更新優惠劵成功')
               this.getCoupons()
               this.$refs.couponModal.hideModal()
             } else {
-              Swal.fire({
-                position: 'top-end',
-                icon: 'error',
-                title: '更新優惠劵失敗',
-                timer: 1500,
-                toast: true,
-                color: '#14213d',
-                background: '#fef8e2',
-                showConfirmButton: false,
-                timerProgressBar: true
-              })
+              ShowNotification('error', '更新優惠劵失敗')
             }
           })
           .catch((error) => {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'error',
-              title: `${error.response.data.message}`,
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('error', `${error.response.data.message}`)
           })
       }
     },
@@ -188,46 +139,16 @@ export default {
         .delete(url)
         .then((response) => {
           if (response.data.success) {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: '刪除優惠劵成功',
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('success', '刪除優惠劵成功')
             const delComponent = this.$refs.delModal
             delComponent.hideModal()
             this.getCoupons()
           } else {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'error',
-              title: '刪除優惠劵失敗',
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('error', '刪除優惠劵失敗')
           }
         })
         .catch((error) => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: `${error.response.data.message}`,
-            timer: 1500,
-            toast: true,
-            color: '#14213d',
-            background: '#fef8e2',
-            showConfirmButton: false,
-            timerProgressBar: true
-          })
+          ShowNotification('error', `${error.response.data.message}`)
         })
     }
   },

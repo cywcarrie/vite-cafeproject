@@ -1,5 +1,5 @@
 <template>
-  <LoadingVue :active="isLoading" :loader="'bars'" :color="'#6c584c'" :width="70" :height="70" />
+  <VueLoading :active="isLoading" />
   <section class="mb-5">
     <div class="container">
       <div
@@ -258,13 +258,15 @@
 <script>
 import { mapState, mapActions } from 'pinia'
 import cartStore from '@/stores/cartStore'
+import VueLoading from '@/components/VueLoading.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
-import Swal from 'sweetalert2'
+import ShowNotification from '@/mixins/swal'
 
 const { VITE_APP_API, VITE_APP_PATH } = import.meta.env
 
 export default {
   components: {
+    VueLoading,
     FooterComponent
   },
   data() {
@@ -328,17 +330,7 @@ export default {
           this.getCart()
         })
         .catch((error) => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: `${error.response.data.message}`,
-            timer: 1500,
-            toast: true,
-            color: '#14213d',
-            background: '#fef8e2',
-            showConfirmButton: false,
-            timerProgressBar: true
-          })
+          ShowNotification('error', `${error.response.data.message}`)
         })
     }
   },

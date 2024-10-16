@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import Swal from 'sweetalert2'
+import ShowNotification from '@/mixins/swal'
 
 const { VITE_APP_API } = import.meta.env
 
@@ -61,44 +61,14 @@ export default {
           if (response.data.success) {
             const { token, expired } = response.data
             document.cookie = `hexToken=${token}; expires=${new Date(expired)}`
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: 'Login Successful',
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('success', 'Login Successful')
             this.$router.push('/admin/products')
           } else {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'error',
-              title: 'Login Failed',
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('error', 'Login Failed')
           }
         })
         .catch((error) => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: `${error.response.data.message}`,
-            timer: 1500,
-            toast: true,
-            color: '#14213d',
-            background: '#fef8e2',
-            showConfirmButton: false,
-            timerProgressBar: true
-          })
+          ShowNotification('error', `${error.response.data.message}`)
         })
     }
   }

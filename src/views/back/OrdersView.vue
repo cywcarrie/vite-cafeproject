@@ -1,5 +1,5 @@
 <template>
-  <LoadingVue :active="isLoading" :loader="'bars'" :color="'#6c584c'" :width="70" :height="70" />
+  <VueLoading :active="isLoading" />
   <table class="table mt-4">
     <thead>
       <tr>
@@ -68,10 +68,11 @@
 </template>
 
 <script>
+import VueLoading from '@/components/VueLoading.vue'
 import DelModal from '@/components/DelModal.vue'
 import OrderModal from '@/components/OrderModal.vue'
 import Pagination from '@/components/PaginationComponent.vue'
-import Swal from 'sweetalert2'
+import ShowNotification from '@/mixins/swal'
 
 const { VITE_APP_API, VITE_APP_PATH } = import.meta.env
 
@@ -87,6 +88,7 @@ export default {
     }
   },
   components: {
+    VueLoading,
     Pagination,
     DelModal,
     OrderModal
@@ -124,43 +126,13 @@ export default {
           this.isLoading = false
           if (response.data.success) {
             this.getOrders(this.currentPage)
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: '更新付款狀態成功',
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('success', '更新付款狀態成功')
           } else {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'error',
-              title: '更新付款狀態失敗',
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('error', '更新付款狀態失敗')
           }
         })
         .catch((error) => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: `${error.response.data.message}`,
-            timer: 1500,
-            toast: true,
-            color: '#14213d',
-            background: '#fef8e2',
-            showConfirmButton: false,
-            timerProgressBar: true
-          })
+          ShowNotification('error', `${error.response.data.message}`)
         })
     },
     delOrder() {
@@ -173,44 +145,14 @@ export default {
           const delComponent = this.$refs.delModal
           delComponent.hideModal()
           if (response.data.success) {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: '刪除成功',
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('success', '刪除成功')
             this.getOrders(this.currentPage)
           } else {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'error',
-              title: '刪除失敗',
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('error', '刪除失敗')
           }
         })
         .catch((error) => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: `${error.response.data.message}`,
-            timer: 1500,
-            toast: true,
-            color: '#14213d',
-            background: '#fef8e2',
-            showConfirmButton: false,
-            timerProgressBar: true
-          })
+          ShowNotification('error', `${error.response.data.message}`)
         })
     }
   },

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import router from '@/router'
-import Swal from 'sweetalert2'
+import ShowNotification from '@/mixins/swal'
 
 const { VITE_APP_API, VITE_APP_PATH } = import.meta.env
 
@@ -25,17 +25,7 @@ export default defineStore('cartStore', {
           this.cart = response.data.data
         })
         .catch((error) => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: `${error.response.data.message}`,
-            timer: 1500,
-            toast: true,
-            color: '#14213d',
-            background: '#fef8e2',
-            showConfirmButton: false,
-            timerProgressBar: true
-          })
+          ShowNotification('error', `${error.response.data.message}`)
         })
     },
     addCart(id, qty = 1) {
@@ -53,43 +43,13 @@ export default defineStore('cartStore', {
           if (response.data.success) {
             this.getCart()
             this.isDone = ''
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: 'Successfully added to cart',
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('success', 'Successfully added to cart')
           } else {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'error',
-              title: 'Failed to add to cart',
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('error', 'Failed to add to cart')
           }
         })
         .catch((error) => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: `${error.response.data.message}`,
-            timer: 1500,
-            toast: true,
-            color: '#14213d',
-            background: '#fef8e2',
-            showConfirmButton: false,
-            timerProgressBar: true
-          })
+          ShowNotification('error', `${error.response.data.message}`)
         })
     },
     updateCart(item) {
@@ -108,17 +68,7 @@ export default defineStore('cartStore', {
           }
         })
         .catch((error) => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: `${error.response.data.message}`,
-            timer: 1500,
-            toast: true,
-            color: '#14213d',
-            background: '#fef8e2',
-            showConfirmButton: false,
-            timerProgressBar: true
-          })
+          ShowNotification('error', `${error.response.data.message}`)
         })
     },
     removeCartItem(id) {
@@ -130,43 +80,13 @@ export default defineStore('cartStore', {
           this.isLoading = false
           if (response.data.success) {
             this.getCart()
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: 'Removed from cart',
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('success', 'Removed from cart')
           } else {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'error',
-              title: 'Failed to remove from cart',
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('error', 'Failed to remove from cart')
           }
         })
         .catch((error) => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: `${error.response.data.message}`,
-            timer: 1500,
-            toast: true,
-            color: '#14213d',
-            background: '#fef8e2',
-            showConfirmButton: false,
-            timerProgressBar: true
-          })
+          ShowNotification('error', `${error.response.data.message}`)
         })
     },
     deleteAllCart() {
@@ -178,43 +98,13 @@ export default defineStore('cartStore', {
           this.isLoading = false
           if (response.data.success) {
             this.getCart()
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: 'Removed all items',
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('success', 'Removed all items')
           } else {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'error',
-              title: 'Failed to remove all items',
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('error', 'Failed to remove all items')
           }
         })
         .catch((error) => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: `${error.response.data.message}`,
-            timer: 1500,
-            toast: true,
-            color: '#14213d',
-            background: '#fef8e2',
-            showConfirmButton: false,
-            timerProgressBar: true
-          })
+          ShowNotification('error', `${error.response.data.message}`)
         })
     },
     getProduct(id) {
@@ -232,43 +122,13 @@ export default defineStore('cartStore', {
           this.isLoading = false
           if (response.data.success) {
             this.getCart()
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: 'Successfully applied',
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('success', 'Successfully applied')
           } else {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'error',
-              title: 'Failed to apply',
-              timer: 1500,
-              toast: true,
-              color: '#14213d',
-              background: '#fef8e2',
-              showConfirmButton: false,
-              timerProgressBar: true
-            })
+            ShowNotification('error', 'Failed to apply')
           }
         })
         .catch((error) => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: `${error.response.data.message}`,
-            timer: 1500,
-            toast: true,
-            color: '#14213d',
-            background: '#fef8e2',
-            showConfirmButton: false,
-            timerProgressBar: true
-          })
+          ShowNotification('error', `${error.response.data.message}`)
         })
     },
     copyCouponCode() {
@@ -277,17 +137,7 @@ export default defineStore('cartStore', {
       copyText.select()
       copyText.setSelectionRange(0, 99999)
       navigator.clipboard.writeText(text).then(() => {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Successfully copied',
-          timer: 1500,
-          toast: true,
-          color: '#14213d',
-          background: '#fef8e2',
-          showConfirmButton: false,
-          timerProgressBar: true
-        })
+        ShowNotification('success', 'Successfully copied')
       })
     }
   }

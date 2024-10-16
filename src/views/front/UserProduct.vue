@@ -1,21 +1,42 @@
 <template>
-  <LoadingVue :active="isLoading" :loader="'bars'" :color="'#6c584c'" :width="70" :height="70" />
+  <VueLoading :active="isLoading" />
   <section class="mb-5">
     <div class="container">
-      <div class="d-flex justify-content-center align-items-center my-5 position-relative banner banner1 container-fluid">
-        <h2 class="position-absolute text-center text-white fw-bolder banner-title">{{ product.category }}</h2>
+      <div
+        class="d-flex justify-content-center align-items-center my-5 position-relative banner banner1 container-fluid"
+      >
+        <h2 class="position-absolute text-center text-white fw-bolder banner-title">
+          {{ product.category }}
+        </h2>
       </div>
-      <a href="#" title="Previous" class="text-black-50 hover-nav fw-bold mt-3 rounded-0" @click.prevent="$router.go(-1)"><i class="bi bi-arrow-left-square-fill fs-2"></i></a>
-      <nav aria-label="breadcrumb" class="mt-3 mb-md-4 d-flex justify-content-start d-none d-md-block">
+      <a
+        href="#"
+        title="Previous"
+        class="text-black-50 hover-nav fw-bold mt-3 rounded-0"
+        @click.prevent="$router.go(-1)"
+        ><i class="bi bi-arrow-left-square-fill fs-2"></i
+      ></a>
+      <nav
+        aria-label="breadcrumb"
+        class="mt-3 mb-md-4 d-flex justify-content-start d-none d-md-block"
+      >
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><RouterLink to="/" class="text-dark hover-nav fw-bold">Home</RouterLink></li>
-          <li class="breadcrumb-item"><RouterLink to="/products" class="text-dark hover-nav fw-bold">Products</RouterLink></li>
+          <li class="breadcrumb-item">
+            <RouterLink to="/" class="text-dark hover-nav fw-bold">Home</RouterLink>
+          </li>
+          <li class="breadcrumb-item">
+            <RouterLink to="/products" class="text-dark hover-nav fw-bold">Products</RouterLink>
+          </li>
           <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
         </ol>
       </nav>
       <div class="row d-flex justify-content-center mb-5 mt-4 mt-md-0">
         <article class="col-lg-6">
-          <img :src="product.imageUrl" alt="productImage" class="img-fluid mb-3 bg-cover bg-center rounded-0">
+          <img
+            :src="product.imageUrl"
+            alt="productImage"
+            class="img-fluid mb-3 bg-cover bg-center rounded-0"
+          />
         </article>
         <div class="col-lg-6 d-flex flex-column">
           <div class="d-flex justify-content-start text-secondary fw-bold mt-4 mt-md-0">
@@ -28,45 +49,66 @@
             {{ product.description }}
           </div>
           <div class="mt-4 text-primary">
-            <p class="fw-bold"><i class="bi bi-check-circle-fill pe-2"></i>Free Delivery on all orders</p>
+            <p class="fw-bold">
+              <i class="bi bi-check-circle-fill pe-2"></i>Free Delivery on all orders
+            </p>
           </div>
           <div class="mt-auto">
             <div class="d-flex justify-content-end align-items-center mt-4 pt-5">
-              <div class="fs-4 text-black-50" v-if="!product.price">NT${{  $filters.currency(product.origin_price) }}</div>
-              <del class="fs-5 text-black-50" v-if="product.price">NT${{ $filters.currency(product.origin_price) }}</del>
+              <div class="fs-4 text-black-50" v-if="!product.price">
+                NT${{ $filters.currency(product.origin_price) }}
+              </div>
+              <del class="fs-5 text-black-50" v-if="product.price"
+                >NT${{ $filters.currency(product.origin_price) }}</del
+              >
             </div>
             <div class="d-flex justify-content-end align-items-center mb-3">
-              <div class="fs-4 ms-2 text-primary fw-bold" v-if="product.price"><span class="text-danger fs-3">Now Sales:</span> NT${{ $filters.currency(product.price) }}</div>
+              <div class="fs-4 ms-2 text-primary fw-bold" v-if="product.price">
+                <span class="text-danger fs-3">Now Sales:</span> NT${{
+                  $filters.currency(product.price)
+                }}
+              </div>
             </div>
             <div class="d-flex justify-content-end align-items-center">
-              <div class="d-flex align-items-center me-1"
-              :style="{ cursor: qty === 1 ? 'not-allowed' : 'pointer' }">
+              <div
+                class="d-flex align-items-center me-1"
+                :style="{ cursor: qty === 1 ? 'not-allowed' : 'pointer' }"
+              >
                 <button
                   type="button"
                   class="btn btn-primary rounded-0"
                   :disabled="qty === 1"
-                  @click="qty--">
+                  @click="qty--"
+                >
                   <i class="bi bi-dash"></i>
                 </button>
                 <label for="qty">
                   <input
-                  type="form"
-                  id="qty"
-                  class="form-control text-center rounded-0"
-                  min="1"
-                  max="99"
-                  v-model.number="qty"/>
+                    type="form"
+                    id="qty"
+                    class="form-control text-center rounded-0"
+                    min="1"
+                    max="99"
+                    v-model.number="qty"
+                  />
                 </label>
-                <button type="button" class="btn btn-primary rounded-0" 
-                @click="qty++"
-                :disabled="qty === 99">
+                <button
+                  type="button"
+                  class="btn btn-primary rounded-0"
+                  @click="qty++"
+                  :disabled="qty === 99"
+                >
                   <i class="bi bi-plus"></i>
                 </button>
               </div>
-              <button type="button" class="btn btn-secondary ms-1 text-nowrap fw-bold rounded-0" @click="addCart(product.id,qty)">
+              <button
+                type="button"
+                class="btn btn-secondary ms-1 text-nowrap fw-bold rounded-0"
+                @click="addCart(product.id, qty)"
+              >
                 <i class="bi bi-cart-fill pe-1"></i>Add To Cart
               </button>
-            </div>              
+            </div>
           </div>
         </div>
       </div>
@@ -88,32 +130,33 @@
 </template>
 
 <script>
-import { mapState , mapActions } from 'pinia'
+import { mapState, mapActions } from 'pinia'
 import cartStore from '@/stores/cartStore'
+import VueLoading from '@/components/VueLoading.vue'
 import FAQs from '@/components/UserFAQs.vue'
 import SwiperComponent from '@/components/SwiperComponent.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
-import Swal from 'sweetalert2'
+import ShowNotification from '@/mixins/swal'
 
 const { VITE_APP_API, VITE_APP_PATH } = import.meta.env
 
 export default {
   components: {
+    VueLoading,
     FAQs,
     SwiperComponent,
     FooterComponent
   },
-  data () {
+  data() {
     return {
       product: {},
-      products: [],
       qty: 1,
       id: '',
       isLoading: false
     }
   },
   watch: {
-    $route () {
+    $route() {
       if (this.$route.params.productId !== undefined) {
         this.id = this.$route.params.productId
         this.getProduct()
@@ -122,33 +165,26 @@ export default {
   },
   methods: {
     ...mapActions(cartStore, ['addCart']),
-    getProduct () {
+    getProduct() {
       const url = `${VITE_APP_API}api/${VITE_APP_PATH}/product/${this.id}`
       this.isLoading = true
-      this.$http.get(url).then((response) => {
-        this.isLoading = false
-        if (response.data.success) {
-          this.product = response.data.product
-        }
-      }).catch(error => {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'error',
-          title: `${error.response.data.message}`,
-          timer: 1500,
-          toast: true,
-          color: "#14213d",
-          background: "#fef8e2",
-          showConfirmButton: false,
-          timerProgressBar: true
+      this.$http
+        .get(url)
+        .then((response) => {
+          this.isLoading = false
+          if (response.data.success) {
+            this.product = response.data.product
+          }
         })
-      })
-    },
+        .catch((error) => {
+          ShowNotification('error', `${error.response.data.message}`)
+        })
+    }
   },
   computed: {
-    ...mapState(cartStore, ['cart']),
+    ...mapState(cartStore, ['cart'])
   },
-  created () {
+  created() {
     this.id = this.$route.params.productId
     this.getProduct()
   }

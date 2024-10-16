@@ -1,6 +1,6 @@
 <template>
-  <LoadingVue :active="isLoading" :loader="'bars'" :color="'#6c584c'" :width="70" :height="70" />
-   <swiper
+  <VueLoading :active="isLoading" />
+  <swiper
     class="pb-5"
     :modules="modules"
     :slides-per-view="1"
@@ -8,29 +8,29 @@
     :pagination="{ clickable: true }"
     :breakpoints="{
       '480': {
-        slidesPerView: 1.5,
+        slidesPerView: 1.5
       },
       '576': {
-        slidesPerView: 1.5,
+        slidesPerView: 1.5
       },
       '768': {
-        slidesPerView: 2,
+        slidesPerView: 2
       },
       '992': {
-        slidesPerView: 3,
+        slidesPerView: 3
       },
       '1200': {
-        slidesPerView: 4,
-      },
+        slidesPerView: 4
+      }
     }"
     :autoplay="{
       delay: 3000,
-      disableOnInteraction: false,
+      disableOnInteraction: false
     }"
   >
     <swiper-slide v-for="item in products" :key="item.id">
       <RouterLink :to="`/product/${item.id}`">
-        <div class=" card product-card box-shadow w-100 h-100 rounded-0">
+        <div class="card product-card box-shadow w-100 h-100 rounded-0">
           <img
             :src="item.imageUrl"
             class="card-img-top object-fit-cover rounded-0"
@@ -42,9 +42,15 @@
             </div>
             <h4 class="card-title fw-bolder mb-4">{{ item.title }}</h4>
             <div class="d-flex justify-content-end align-items-center mb-3">
-              <div class="fs-4 text-black-50" v-if="!item.price">NT${{ $filters.currency(item.origin_price) }}</div>
-              <del class="fs-5 text-black-50" v-if="item.price"> NT${{ $filters.currency(item.origin_price) }}</del>
-              <div class="fs-4 text-danger fw-bold ps-2" v-if="item.price"> NT${{ $filters.currency(item.price) }}</div>
+              <div class="fs-4 text-black-50" v-if="!item.price">
+                NT${{ $filters.currency(item.origin_price) }}
+              </div>
+              <del class="fs-5 text-black-50" v-if="item.price">
+                NT${{ $filters.currency(item.origin_price) }}</del
+              >
+              <div class="fs-4 text-danger fw-bold ps-2" v-if="item.price">
+                NT${{ $filters.currency(item.price) }}
+              </div>
             </div>
           </div>
         </div>
@@ -54,6 +60,7 @@
 </template>
 
 <script>
+import VueLoading from './VueLoading.vue'
 import { Pagination, A11y, Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 
@@ -64,10 +71,11 @@ const { VITE_APP_API, VITE_APP_PATH } = import.meta.env
 
 export default {
   components: {
+    VueLoading,
     Swiper,
     SwiperSlide
   },
-  data () {
+  data() {
     return {
       isLoading: false,
       products: [],
@@ -75,7 +83,7 @@ export default {
     }
   },
   methods: {
-    getProducts () {
+    getProducts() {
       const url = `${VITE_APP_API}api/${VITE_APP_PATH}/products/all`
       this.isLoading = true
       this.$http.get(url).then((response) => {
@@ -84,7 +92,7 @@ export default {
         this.getSwiper()
       })
     },
-    getSwiper () {
+    getSwiper() {
       const randomSwiper = []
       for (let i = 0; i < 6; i += 1) {
         const num = Math.floor(Math.random() * this.products.length)
@@ -94,7 +102,7 @@ export default {
       this.products = randomSwiper
     }
   },
-  mounted () {
+  mounted() {
     this.getProducts()
   }
 }
