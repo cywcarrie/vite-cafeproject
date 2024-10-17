@@ -1,17 +1,16 @@
-@import "bootstrap/scss/functions";
-@import "./utils/variables";
-@import "bootstrap/scss/mixins";
+@import 'bootstrap/scss/functions';
+@import './utils/variables';
+@import 'bootstrap/scss/mixins';
 
-@import "bootstrap/scss/bootstrap";
+@import 'bootstrap/scss/bootstrap';
 
-@import "./base/base";
-@import "./components/navbar";
-@import "./components/footer";
-@import "./components/banner";
-@import "./components/home";
-@import "./components/cart";
-@import "./components/check";
-@import "./components/card";
-@import "./components/swiper";
-@import "./components/toast";
-@import "./components/orderModal";
+@import './base/base';
+@import './components/navbar';
+@import './components/footer';
+@import './components/banner';
+@import './components/home';
+@import './components/cart';
+@import './components/check';
+@import './components/card';
+@import './components/swiper';
+@import './components/orderModal';
